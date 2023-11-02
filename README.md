@@ -13,3 +13,7 @@ Let's create your home page and discuss the different ways you can style your ap
 ## Chapter 3: Optimizing Fonts and Images
 
 Continue working on your home page by adding a hero image and a custom font.
+
+## Chapter 4: Creating Layouts and Pages
+
+Let’s create your dashboard routes using layouts and pages!
