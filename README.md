@@ -17,3 +17,7 @@ Continue working on your home page by adding a hero image and a custom font.
 ## Chapter 4: Creating Layouts and Pages
 
 Let’s create your dashboard routes using layouts and pages!
+
+## Chapter 5: Navigating Between Pages
+
+Learn how to navigate between pages using the `<Link>` component.
