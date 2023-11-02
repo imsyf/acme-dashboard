@@ -21,3 +21,7 @@ Let’s create your dashboard routes using layouts and pages!
 ## Chapter 5: Navigating Between Pages
 
 Learn how to navigate between pages using the `<Link>` component.
+
+## Chapter 6: Setting Up Your Database
+
+Let's create a database to start fetching real data!
