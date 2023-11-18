@@ -25,3 +25,7 @@ Learn how to navigate between pages using the `<Link>` component.
 ## Chapter 6: Setting Up Your Database
 
 Let's create a database to start fetching real data!
+
+## Chapter 7: Fetching Data
+
+Let's discuss the different ways you can fetch data from your database, including using SQL and alternatives.
