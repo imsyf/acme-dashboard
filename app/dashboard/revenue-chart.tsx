@@ -1,14 +1,12 @@
 import { CalendarIcon } from "@heroicons/react/24/outline";
 
-import { Revenue } from "@/app/lib/definitions";
+import { fetchRevenue } from "@/app/lib/data";
 import { generateYAxis } from "@/app/lib/utils";
 import { lusitana } from "@/app/ui/fonts";
 
-export default async function RevenueChart({
-  revenue,
-}: {
-  revenue: Revenue[];
-}) {
+export default async function RevenueChart() {
+  const revenue = await fetchRevenue();
+
   let content: JSX.Element;
 
   if (!revenue || revenue.length === 0) {
