@@ -29,3 +29,7 @@ Let's create a database to start fetching real data!
 ## Chapter 7: Fetching Data
 
 Let's discuss the different ways you can fetch data from your database, including using SQL and alternatives.
+
+## Chapter 8: Static and Dynamic Rendering
+
+Learn about how you can use to further optimize data fetching with PPR and Streaming.
