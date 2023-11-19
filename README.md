@@ -37,3 +37,7 @@ Learn about how you can use to further optimize data fetching with PPR and Strea
 ## Chapter 9: Streaming
 
 Learn how to improve your user's experience by adding streaming.
+
+## Chapter 10: Partial Prerendering (Optional)
+
+An early look into [Partial Prerendering](https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model) - a new experimental rendering model built with streaming.
