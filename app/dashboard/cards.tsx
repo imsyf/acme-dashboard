@@ -5,6 +5,7 @@ import {
   InboxIcon,
 } from "@heroicons/react/24/outline";
 
+import { fetchCardData } from "@/app/lib/data";
 import { HeroIcon } from "@/app/lib/definitions";
 import { lusitana } from "@/app/ui/fonts";
 
@@ -16,6 +17,24 @@ const iconMap: Record<InvoiceType, HeroIcon> = {
   pending: ClockIcon,
   invoices: InboxIcon,
 };
+
+export default async function CardWrapper() {
+  const {
+    customersCount,
+    invoicesCount,
+    totalPaidInvoices,
+    totalPendingInvoices,
+  } = await fetchCardData();
+
+  return (
+    <>
+      <Card title="Collected" value={totalPaidInvoices} type="collected" />
+      <Card title="Pending" value={totalPendingInvoices} type="pending" />
+      <Card title="Total Invoices" value={invoicesCount} type="invoices" />
+      <Card title="Total Customers" value={customersCount} type="customers" />
+    </>
+  );
+}
 
 export function Card({
   title,
