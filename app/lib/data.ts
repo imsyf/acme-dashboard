@@ -43,7 +43,7 @@ export async function fetchCardData() {
   }
 }
 
-export async function fetchFilteredInvoices() {
+export async function fetchFilteredInvoices(query: string) {
   // Artificially delay a reponse for demo purposes.
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -59,6 +59,12 @@ export async function fetchFilteredInvoices() {
         customers.image_url
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
+      WHERE
+        customers.name ILIKE ${`%${query}%`} OR
+        customers.email ILIKE ${`%${query}%`} OR
+        invoices.amount::text ILIKE ${`%${query}%`} OR
+        invoices.date::text ILIKE ${`%${query}%`} OR
+        invoices.status ILIKE ${`%${query}%`}
       ORDER BY invoices.date DESC
     `;
 

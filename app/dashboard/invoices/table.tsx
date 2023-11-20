@@ -6,8 +6,8 @@ import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
 import { UpdateInvoice, DeleteInvoice } from "./buttons";
 import InvoiceStatus from "./status";
 
-export default async function InvoicesTable() {
-  const invoices = await fetchFilteredInvoices();
+export default async function InvoicesTable({ query }: { query: string }) {
+  const invoices = await fetchFilteredInvoices(query);
 
   return (
     <div className="mt-6 flow-root">
