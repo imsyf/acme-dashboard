@@ -1,7 +1,12 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { LatestInvoiceRaw, InvoicesTable, Revenue } from "./definitions";
+import {
+  CustomerField,
+  LatestInvoiceRaw,
+  InvoicesTable,
+  Revenue,
+} from "./definitions";
 import { formatCurrency } from "./utils";
 
 export async function fetchCardData() {
@@ -40,6 +45,23 @@ export async function fetchCardData() {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to card data.");
+  }
+}
+
+export async function fetchCustomers() {
+  try {
+    const data = await sql<CustomerField>`
+      SELECT
+        id,
+        name
+      FROM customers
+      ORDER BY name ASC
+    `;
+
+    return data.rows;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch all customers.");
   }
 }
 

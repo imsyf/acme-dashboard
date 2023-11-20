@@ -45,3 +45,7 @@ An early look into [Partial Prerendering](https://vercel.com/blog/partial-preren
 ## Chapter 11: Adding Search and Pagination
 
 Learn how to implement search and pagination with Next.js APIs.
+
+## Chapter 12: Mutating Data
+
+Learn how to mutate data with Server Actions.

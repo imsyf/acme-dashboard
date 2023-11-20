@@ -1,3 +1,8 @@
+export type CustomerField = {
+  id: string;
+  name: string;
+};
+
 export type HeroIcon = React.ComponentType<
   React.PropsWithoutRef<React.ComponentProps<"svg">> & {
     title?: string | undefined;

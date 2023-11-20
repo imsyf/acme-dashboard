@@ -5,6 +5,7 @@ import { lusitana } from "@/app/ui/fonts";
 import Search from "@/app/ui/search";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 
+import { CreateInvoice } from "./buttons";
 import Pagination from "./pagination";
 import Table from "./table";
 
@@ -30,6 +31,7 @@ export default async function Page({
 
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
+        <CreateInvoice />
       </div>
 
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
