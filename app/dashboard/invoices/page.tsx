@@ -1,20 +1,26 @@
 import { Suspense } from "react";
 
+import { fetchInvoicesPages } from "@/app/lib/data";
 import { lusitana } from "@/app/ui/fonts";
 import Search from "@/app/ui/search";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 
+import Pagination from "./pagination";
 import Table from "./table";
 
 // Reference: https://nextjs.org/docs/app/api-reference/file-conventions/page#searchparams-optional
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
   searchParams?: {
     query?: string;
+    page?: string;
   };
 }) {
   const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const totalPages = await fetchInvoicesPages(query);
 
   return (
     <div className="w-full">
@@ -26,9 +32,13 @@ export default function Page({
         <Search placeholder="Search invoices..." />
       </div>
 
-      <Suspense key={query} fallback={<InvoicesTableSkeleton />}>
-        <Table query={query} />
+      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+        <Table query={query} currentPage={currentPage} />
       </Suspense>
+
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </div>
     </div>
   );
 }
