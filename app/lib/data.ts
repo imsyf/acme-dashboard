@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { LatestInvoiceRaw, Revenue } from "./definitions";
+import { LatestInvoiceRaw, InvoicesTable, Revenue } from "./definitions";
 import { formatCurrency } from "./utils";
 
 export async function fetchCardData() {
@@ -40,6 +40,32 @@ export async function fetchCardData() {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to card data.");
+  }
+}
+
+export async function fetchFilteredInvoices() {
+  // Artificially delay a reponse for demo purposes.
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  try {
+    const invoices = await sql<InvoicesTable>`
+      SELECT
+        invoices.id,
+        invoices.amount,
+        invoices.date,
+        invoices.status,
+        customers.name,
+        customers.email,
+        customers.image_url
+      FROM invoices
+      JOIN customers ON invoices.customer_id = customers.id
+      ORDER BY invoices.date DESC
+    `;
+
+    return invoices.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
   }
 }
 
