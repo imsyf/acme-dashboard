@@ -41,3 +41,7 @@ Learn how to improve your user's experience by adding streaming.
 ## Chapter 10: Partial Prerendering (Optional)
 
 An early look into [Partial Prerendering](https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model) - a new experimental rendering model built with streaming.
+
+## Chapter 11: Adding Search and Pagination
+
+Learn how to implement search and pagination with Next.js APIs.
