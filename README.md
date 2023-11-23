@@ -49,3 +49,7 @@ Learn how to implement search and pagination with Next.js APIs.
 ## Chapter 12: Mutating Data
 
 Learn how to mutate data with Server Actions.
+
+## Chapter 13: Handling Errors
+
+Let's explore best practices for mutating data with forms, including error handling and accessibility.
