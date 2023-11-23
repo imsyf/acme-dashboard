@@ -1,9 +1,21 @@
+export type CustomerField = {
+  id: string;
+  name: string;
+};
+
 export type HeroIcon = React.ComponentType<
   React.PropsWithoutRef<React.ComponentProps<"svg">> & {
     title?: string | undefined;
     titleId?: string | undefined;
   }
 >;
+
+export type InvoiceForm = {
+  id: string;
+  customer_id: string;
+  amount: number;
+  status: "pending" | "paid";
+};
 
 export type InvoicesTable = {
   id: string;

@@ -1,7 +1,13 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { LatestInvoiceRaw, InvoicesTable, Revenue } from "./definitions";
+import {
+  CustomerField,
+  LatestInvoiceRaw,
+  InvoiceForm,
+  InvoicesTable,
+  Revenue,
+} from "./definitions";
 import { formatCurrency } from "./utils";
 
 export async function fetchCardData() {
@@ -43,11 +49,30 @@ export async function fetchCardData() {
   }
 }
 
+export async function fetchCustomers() {
+  try {
+    const data = await sql<CustomerField>`
+      SELECT
+        id,
+        name
+      FROM customers
+      ORDER BY name ASC
+    `;
+
+    return data.rows;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch all customers.");
+  }
+}
+
 const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredInvoices(
   query: string,
   currentPage: number
 ) {
+  noStore();
+
   // Artificially delay a reponse for demo purposes.
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -82,7 +107,35 @@ export async function fetchFilteredInvoices(
   }
 }
 
+export async function fetchInvoiceById(id: string) {
+  noStore();
+
+  try {
+    const data = await sql<InvoiceForm>`
+      SELECT
+        invoices.id,
+        invoices.customer_id,
+        invoices.amount,
+        invoices.status
+      FROM invoices
+      WHERE invoices.id = ${id};
+    `;
+
+    const invoice = data.rows.map((invoice) => ({
+      ...invoice,
+      // Convert amount from cents to dollars
+      amount: invoice.amount / 100,
+    }));
+
+    return invoice[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+  }
+}
+
 export async function fetchInvoicesPages(query: string) {
+  noStore();
+
   try {
     const count = await sql`SELECT COUNT(*)
     FROM invoices
